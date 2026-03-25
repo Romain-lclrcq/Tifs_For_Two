@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #eee8df;
+}
+
+.cut {
+  height: 1px;
+  width: 80%;
+  background-color: #cb45c4;
+  position: relative;
+  left: 10%;
+  margin: 5vh 0;
+}
+
+.presentation {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  letter-spacing: 0.1em;
+  line-height: 1.7em;
+  gap: 1em;
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+  margin: 5vh 0;
+  letter-spacing: 0.1em;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  color: #cb45c4;
+  font-size: 2em;
+}
+section h4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: #cb45c4 1px solid;
+  border-radius: 10px;
+  width: 90vw;
+  height: 5vh;
+  margin: 0 auto;
+  margin-top: 1em;
+  background: white;
+  font-weight: lighter;
+  letter-spacing: 0.1em;
+  font-size: 1.1em;
+}
+
+section div > div > img {
+  width: 10%;
+}
+section div > div {
+  display: none;
+  width: 80vw;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  text-align: justify;
+  background-color: white;
+  padding: 1em 5vw;
+  border: #cb45c4 1px solid;
+  border-radius: 10px;
+}
+
+section h4:hover {
+  cursor: pointer;
+}
+
+.explicationVisible {
+  display: flex;
+  border-top: 0;
+  border-radius: 0 0 10px 10px;
+}
+
+@media screen and (max-width: 1200px) {
+  section div > div > img {
+    width: 20vw;
+  }
+}
