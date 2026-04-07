@@ -25,7 +25,7 @@ class opinionRepository
         );
         $result = $stmt->execute([
             'commentary' => $opinion->getCommentary(),
-            'date_publication' => $opinion->getDatePublication(),
+            'date_publication' => $opinion->getDatePublication()->format('Y-m-d H:i:s'),
             'note' => $opinion->getNote(),
             'id_appointment' => $opinion->getIdAppointment()
         ]);

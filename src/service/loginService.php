@@ -27,16 +27,17 @@ class loginService
     {
         $account = $this->accountRepository->findByMail($data['mail']);
 
-        if ($account) {
-            if (password_verify($data['password'], $account->getPassword())) {
-                $user = $this->customerRepository->findById($account->getIdAccount());
-                $_SESSION['Id_account'] = $account->getIdAccount();
-
-
-
-                return [$account, $user];
-            }
+        if (!$account) {
+            throw new \InvalidArgumentException("Identifiant ou Mot de passe");
         }
-        return $_POST['error'];
+        if (!password_verify($data['password'], $account->getPassword())) {
+            throw new \InvalidArgumentException("Wrong mdp");
+        }
+        $user = $this->customerRepository->findById($account->getIdAccount());
+        $_SESSION['Id_account'] = $account->getIdAccount();
+
+
+
+        return [$account, $user];
     }
 }

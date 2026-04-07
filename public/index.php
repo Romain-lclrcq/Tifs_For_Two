@@ -82,8 +82,6 @@ $container = [
     }
 ];
 
-
-
 $controllerInstance = $container[$controllerClass]($pdo);
 if (!method_exists($controllerInstance, $method)) {
     $method = 'index';

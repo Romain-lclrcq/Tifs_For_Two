@@ -14,5 +14,7 @@
             "email": "leclercq.romain63@gmail.com"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    }
 }

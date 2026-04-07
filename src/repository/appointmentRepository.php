@@ -131,6 +131,26 @@ class appointmentRepository
         return $appointment;
     }
 
+    public function findAllAppointmentToday(): ?array
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM appointment WHERE DATE(Date_time) = CURDATE()');
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+
+        if (!$result) return $result =  [];
+        return $result;
+    }
+
+    public function findFutureAppointments(): ?array
+    {
+
+        $stmt = $this->pdo->prepare('SELECT * FROM appointment WHERE DATE(Date_time) > CURDATE()');
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+
+        return $result;
+    }
+
 
     //UPDATE
     public function update(appointment $appointment): bool

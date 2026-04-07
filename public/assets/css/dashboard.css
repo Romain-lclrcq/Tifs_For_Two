@@ -1,0 +1,84 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #eee8df;
+}
+
+.cut {
+  height: 1px;
+  width: 80%;
+  background-color: #cb45c4;
+  position: relative;
+  left: 10%;
+  margin: 5vh 0;
+}
+
+section {
+  margin: 5em 0;
+}
+
+small {
+  text-align: center;
+  display: block;
+  margin-bottom: 3em;
+}
+
+/* /////////////////// */
+
+.adminToday {
+  border-collapse: collapse;
+  margin: 0 auto;
+  box-shadow: 0 0 10px #cb45c4;
+}
+
+.adminToday tr {
+  border-top: 1px solid #cb45c4;
+  border-bottom: 1px solid #cb45c4;
+  padding: 200px;
+  gap: 200px;
+}
+
+.adminToday thead {
+  font-weight: 900;
+}
+
+.adminToday th {
+  padding: 2em;
+  font-weight: lighter;
+}
+
+h3 {
+  text-align: center;
+  margin: 2em 0;
+  color: #cb45c4;
+  text-decoration: underline;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  font-size: 1.5em;
+}
+
+/*  */
+
+.futureAppointment table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  box-shadow: 0 0 10px #cb45c4;
+}
+
+.futureAppointment tr {
+  border-top: 1px solid #cb45c4;
+  border-bottom: 1px solid #cb45c4;
+  padding: 200px;
+  gap: 200px;
+}
+
+.futureAppointment thead {
+  font-weight: 900;
+}
+
+.futureAppointment th {
+  padding: 2em;
+  font-weight: lighter;
+}

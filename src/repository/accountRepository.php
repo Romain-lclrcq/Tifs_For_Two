@@ -58,22 +58,21 @@ class accountRepository
             $result['tel_number'],
             (int)$result['Id_account']
         );
-
-
         return $account;
     }
+
 
     public function findLastId(): int
     {
         return (int)$this->pdo->lastInsertId();
     }
 
-    public function findByTelNumber($num): bool
-    {
-        $stmt = $this->pdo->prepare('SELECT 1 FROM account WHERE tel_number=:num');
-        $result = $stmt->execute(["num" => $num]);
 
-        return (bool) $result;
+    public function findByTelNumber($num)
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM account WHERE tel_number=:num');
+        $stmt->execute(["num" => $num]);
+        return $stmt->fetch();
     }
 
 

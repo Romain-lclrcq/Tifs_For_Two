@@ -15,7 +15,11 @@
     <?php include __DIR__ . '/../views/templates/header.php' ?>
 
 
-
+    <h1>
+        MESSAGE POUR MOI <BR> RESTE A FAIRE : <UL>
+            <LI>LA METHODE DE TRIE POUR RECHERCHER LES RDV SELON L4EMPLOYE</LI>
+        </UL>
+    </h1>
     <main>
         <div>
             <section id="s1">

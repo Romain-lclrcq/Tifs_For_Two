@@ -5,3 +5,53 @@
 body {
   background-color: #eee8df;
 }
+
+form fieldset {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  left: 15%;
+  gap: 3em;
+  margin: 3em 0;
+  padding: 2em;
+  border: #cb45c4 1px solid;
+  border-radius: 10px;
+  width: 70%;
+  justify-content: center;
+  box-shadow: 0 0 5px;
+}
+
+legend {
+  font-weight: 600;
+  border: 1px solid #cb45c4;
+  padding: 0.5em;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 0 5px;
+}
+
+h3 {
+  color: #cb45c4;
+  text-decoration: underline;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  font-size: 1.5em;
+  text-align: center;
+}
+
+input[type="submit"] {
+  position: relative;
+  left: 60%;
+  padding: 1em 2em;
+  border: 1px solid #cb45c4;
+  background: white;
+  box-shadow: 0 0 5px;
+  border-radius: 30px;
+}
+
+@media screen and (max-width: 1000px) {
+  form fieldset {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

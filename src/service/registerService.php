@@ -37,17 +37,16 @@ class registerService
                     break;
                 }
             }
-            $err[] = 'Nous n\'acceptons pas les homonymes dans cette base de données. <br> Merci de rentrer chez vous :)';
+            $err[] = 'Nous n\'acceptons pas les homonymes dans cette base de données.';
         }
 
 
         //on supprime tous les caractères qui ne sont pas des chiffres, et on compte le nombre de caractere restant
         $tel_number =  preg_replace('/\D/', '', $data['telNumber']);
-        if (strlen($tel_number) < 10 || strlen($tel_number) >= 14) {
+        if (strlen($tel_number) < 10 || strlen($tel_number) >= 12) {
             $err[] = 'Le numéro de téléphone est incorrect.';
         }
-
-        if ($this->accountRepository->findByTelNumber($tel_number)) {
+        if ($test = $this->accountRepository->findByTelNumber($tel_number)) {
             $err[] = 'Le numéro de téléphone est déjà utilisé.';
         }
 
@@ -58,7 +57,7 @@ class registerService
         }
 
         if ($data['password'] !== $data['confirmPassword']) {
-            $err[] = 'Les mot de passe ne sosnt pas identiques.';
+            $err[] = 'Les mot de passe ne sont pas identiques.';
         }
         $hashedPassword = password_hash($data['password'], PASSWORD_ARGON2ID);
 

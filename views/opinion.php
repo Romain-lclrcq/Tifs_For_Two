@@ -34,25 +34,25 @@
 
     <div class="cut"></div>
     <h3>Vous aussi postez votre commentaire !</h3>
-    <form action="#" method="post">
+    <form action="/opinion/publication" method="post">
         <label>Votre commentaire :
-            <textarea name="descriptif"></textarea>
+            <textarea name="descriptif" required></textarea>
         </label>
         <div>
             <label>Votre note (/5) :</label>
-            <input type="radio" name="note" class="note" value="1" id="labelNote1">
+            <input type="radio" name="note" class="note" value="1" id="labelNote1" required>
             <label for='labelNote1'>1</label>
 
-            <input type="radio" name="note" class="note" value="2" id="labelNote2">
+            <input type="radio" name="note" class="note" value="2" id="labelNote2" required>
             <label for='labelNote2'>2</label>
 
-            <input type="radio" name="note" class="note" value="3" id="labelNote3">
+            <input type="radio" name="note" class="note" value="3" id="labelNote3" required>
             <label for='labelNote3'>3</label>
 
-            <input type="radio" name="note" class="note" value="4" id="labelNote4">
+            <input type="radio" name="note" class="note" value="4" id="labelNote4" required>
             <label for='labelNote4'>4</label>
 
-            <input type="radio" name="note" class="note" value="5" id="labelNote5">
+            <input type="radio" name="note" class="note" value="5" id="labelNote5" required>
             <label for='labelNote5'>5</label>
 
         </div>

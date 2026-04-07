@@ -49,22 +49,13 @@ $cardsUser = $_SESSION['customers'];
         align-items: center;
     }
 
+    .contenairCardUser div p {
+        padding: .3em;
+        letter-spacing: .1em;
+    }
+
     form {
         display: flex;
         justify-content: center;
     }
 </style>
-
-<script>
-    const btnConfirmationDeleteUser = document.querySelector('.confirmation')
-    btnConfirmationDeleteUser.addEventListener('submit', (evt) => {
-        const validation = confirm('Êtes-vous sûr de vouloir supprimer cette utilisateur ?')
-
-        if (!validation) {
-            unset($_POST['IdCustomer'])
-            evt.preventDefault()
-        }
-    })
-</script>
-
-<!-- TODO On en est la -->

@@ -18,6 +18,7 @@ class dashboardController
     public function index()
     {
 
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['IdCustomer']) && !isset($_POST['delete'])) {
             (int)$id = $_POST['IdCustomer'];
             $userUpdate = $this->dashboardService->findCustomerById($id);
@@ -28,13 +29,11 @@ class dashboardController
             exit;
         }
 
-
-
-        if (!empty($_SESSION['Id_account'])) {
-            $this->dashboardService->index();
-            include __DIR__ . '/../../views/dashboard.php';
-        } else {
+        if (empty($_SESSION['Id_account'])) {
             include __DIR__ . '/../../views/home.php';
+        } else {
+            $result = $this->dashboardService->index();
+            include __DIR__ . '/../../views/dashboard.php';
         }
     }
 
