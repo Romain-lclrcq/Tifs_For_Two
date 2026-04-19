@@ -19,6 +19,9 @@ if ($_SESSION['Id_account'] == 34) {
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/footer.css">
     <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -26,22 +29,21 @@ if ($_SESSION['Id_account'] == 34) {
 
     <?php if ($_SESSION['Id_account'] !== 34): ?>
 
-        <h3>Information de votre compte</h3>
-        <ul>
-            <li>Date de création (a venir)</li>
-            <li><?= $_SESSION['mail'] ?></li>
-            <li><?= $_SESSION['tel'] ?></li>
-            <!-- TODO voir pour mettre la date de création dans les infos du compte -->
+        <h3>Information du compte</h3>
+        <ul class="contact">
+            <li>Adresse mail : <br><?= $_SESSION['mail'] ?></li>
+            <br>
+            <li>Numéro de téléphone : <br><?= $_SESSION['tel'] ?></li>
         </ul>
         <div class='cut'></div>
         <section>
-            <h3>Utilisateur</h3>
+            <h3>Utilisateur(s)</h3>
             <small>Prenez rendez-vous pour toute la famille</small>
             <?php include __DIR__ . '/../views/templates/cardsUserDashboard.php' ?>
         </section>
         <div class='cut'></div>
         <section>
-            <h3>Votre historique de réservation </h3>
+            <h3>Historique de réservation </h3>
             <?php include __DIR__ . '/../views/templates/appointmentHistoryDashboard.php' ?>
         </section>
 

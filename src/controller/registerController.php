@@ -15,6 +15,18 @@ class registerController
 
     public function index(?array $errors = [])
     {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['firstname'])) {
+            $firstname = $_POST['firstname'];
+            $lastname = $_POST['lastname'];
+            $telNumber = $_POST['telNumber'];
+            $mail = $_POST['mail'];
+        } else {
+            $firstname = '';
+            $lastname = '';
+            $mail = '';
+            $telNumber = '';
+        }
+
         include __DIR__ . '/../../views/register.php';
     }
 

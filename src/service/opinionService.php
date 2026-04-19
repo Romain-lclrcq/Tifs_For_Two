@@ -56,12 +56,13 @@ class opinionService
 
     public function publication(array $data)
     {
+        $err = null;
         // Protéger le texte envoyé
         $opinion = htmlspecialchars($data['descriptif']);
 
         // Vérifier que la personne est connecté
         if (!isset($_SESSION['Id_account'])) {
-            return $err[] = 'Il faut être connecté pour publier un avis.';
+            return $err = 'Il faut être connecté pour publier un avis.';
         }
 
         // Vérifier si le compte connecté à déjà pris rdv 
@@ -93,19 +94,16 @@ class opinionService
             }
         }
         if (!$validationDate) {
-            $err[] = 'prends rdv';
+            $err = 'Vous devez avoir pris rendez-vous pour poster un avis';
         }
-
-
 
 
         if (!isset($appointments)) {
-            $err[] = 'Vous devez avoir pris rendez-vous pour poster un avis.';
+            $err = 'Vous devez avoir pris rendez-vous pour poster un avis.';
         }
 
 
-        var_dump($today);
-        if (!empty($err)) {
+        if ($err !== null) {
             return $err;
         } else {
             $opinion = new opinion(
@@ -116,7 +114,6 @@ class opinionService
 
             );
             $result =  $this->opinionRepository->create($opinion);
-            $result = 'tout va bien';
             return $result;
         }
     }

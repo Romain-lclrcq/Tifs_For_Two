@@ -42,3 +42,9 @@ input[type="submit"] {
   border-radius: 30px;
   margin-top: 3em;
 }
+
+.messErr {
+  color: red;
+  text-align: center;
+  font-weight: bolder;
+}

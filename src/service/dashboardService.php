@@ -72,6 +72,8 @@ class dashboardService
                 $_SESSION['appointments'] = $appointmentData;
             }
         } else {
+            $listingToday =  [];
+            $listingFuture = [];
             $appointmentsToday = $this->appointmentRepository->findAllAppointmentToday();
 
             foreach ($appointmentsToday as $appointment) {
@@ -94,8 +96,9 @@ class dashboardService
                         "prestation" => $libelle,
                         "timeOfPrestation" => $time,
                         "hourAppointment" => $hourAppointment,
-                        "employe" => $employeName
+                        "employe" => $employeName,
                     ];
+                var_dump('coucou');
             }
             usort($listingToday, function ($a, $b) {
                 return $b['hourAppointment'] <=> $a['hourAppointment'];
@@ -133,10 +136,6 @@ class dashboardService
             usort($listingToday, function ($a, $b) {
                 return $b['hourAppointment'] <=> $a['hourAppointment'];
             });
-
-
-
-
 
 
             return [

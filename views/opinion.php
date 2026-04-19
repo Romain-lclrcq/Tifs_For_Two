@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/footer.css">
     <link rel="stylesheet" href="/assets/css/opinion.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 
@@ -27,13 +30,21 @@
                 <th><?= $opinion['firstname'] ?></th>
                 <th><?= $opinion['commentary'] ?></th>
                 <th><?= $opinion['date']->format('d M') ?></th>
-                <th><?= $opinion['note'] ?> // Remplacer la note par un nombre d'étoile</th>
+                <th><?= $opinion['note'] ?></th>
             </tr>
         <?php endforeach; ?>
     </table>
 
     <div class="cut"></div>
-    <h3>Vous aussi postez votre commentaire !</h3>
+
+    <span class="titleOpinion">
+        <h3>Vous aussi postez votre commentaire !</h3>
+        <?php
+        if (!empty($_SESSION['err'])) {
+            echo '<p>' . $_SESSION["err"] . '</p>';
+        }
+        ?>
+    </span>
     <form action="/opinion/publication" method="post">
         <label>Votre commentaire :
             <textarea name="descriptif" required></textarea>

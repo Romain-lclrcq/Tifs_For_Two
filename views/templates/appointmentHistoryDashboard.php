@@ -36,6 +36,7 @@ echo "</table>"
     }
 
     tr {
+        padding: 0 100px;
         border-bottom: 1px solid #cb45c4;
         border-top: 1px solid #cb45c4;
     }
@@ -52,24 +53,13 @@ echo "</table>"
     }
 
     .serviceTable {
-        padding: 0 7vw;
+        padding: 0 3vw;
     }
 
-    /* .appointment {
-        margin: 10em;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 2em;
-        border-bottom: 1px solid #cb45c4;
-        border-top: 1px solid #cb45c4;
+    @media screen and (max-width: 1200px) {
+        th {
+            padding: .7em 10px;
+        }
+
     }
-
-    .name {
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    } */
 </style>
-// -> Pour tous les membres, je vais chercher tous les rendez vous

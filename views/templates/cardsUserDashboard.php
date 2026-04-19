@@ -58,4 +58,14 @@ $cardsUser = $_SESSION['customers'];
         display: flex;
         justify-content: center;
     }
+
+    input[type="submit"] {
+        background-color: white;
+        color: #cb45c4;
+        padding: .2em 2em;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 0 5px black;
+        margin: 5px;
+    }
 </style>

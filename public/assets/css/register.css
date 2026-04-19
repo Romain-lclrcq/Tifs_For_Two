@@ -53,5 +53,14 @@ input[type="submit"] {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 10% 0;
+    padding: 2vh 3vw;
+    gap: 3vh;
+  }
+  input[type="submit"] {
+    left: 40%;
+  }
+  H3 {
+    margin: 10vh 0;
   }
 }

@@ -22,7 +22,7 @@ table {
 th {
   border-top: 1px solid #cb45c4;
   border-bottom: 1px solid #cb45c4;
-  padding: 2em 10vw;
+  padding: 0.5em 1em;
   font-weight: lighter;
 }
 
@@ -64,7 +64,7 @@ textarea {
 }
 
 textarea:focus {
-  border: 20px solid #cb45c4;
+  border: 2px solid #cb45c4;
 }
 
 form > div {
@@ -81,4 +81,17 @@ input[type="submit"] {
   border: none;
   border-radius: 10px;
   box-shadow: black 0 0 3px 1px;
+}
+
+.titleOpinion {
+  text-align: center;
+  background-color: red;
+  margin: 1000px;
+  color: #cb45c4;
+}
+
+.titleOpinion > p {
+  color: red;
+  text-decoration: underline;
+  font-weight: bolder;
 }

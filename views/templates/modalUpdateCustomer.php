@@ -1,7 +1,33 @@
 <style>
     .modalUpdate {
         position: fixed;
-        top: 50%;
+        /* top: 50%; */
+        margin: 0 auto;
+        width: 70vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+    }
+
+    .modalUpdate form {
+        margin-top: 2em;
+        margin-bottom: 1em;
+        display: flex;
+        flex-direction: column;
+        gap: .5em;
+        align-items: center;
+    }
+
+    .modalUpdate input[type='submit'],
+    .modalUpdate button {
+        background-color: white;
+        color: #cb45c4;
+        border: none;
+        padding: 1em 2em;
+        border-radius: 10px;
+        box-shadow: 0 0 10px black;
     }
 </style>
 
@@ -30,9 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['IdCustomer'])) {
 <script>
     const btnCloseModal = document.querySelector('.modalUpdate button')
     const modalUpdate = document.querySelector('.modalUpdate')
+    console.log(btnCloseModal);
+
 
     btnCloseModal.addEventListener("click", (evt) => {
-        evt.preventDefault()
-        modalUpdate.close();
+        modalUpdate.style.display = 'none'
     })
 </script>

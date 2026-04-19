@@ -25,39 +25,57 @@ class registerService
 
     public function register(array $data)
     {
-
-        // if ($this->customerRepository->findByLastname($data['lastname']) && $this->customerRepository->findByfirstname($data["firstname"])) {
-        //     $err[] = "Le nom ET prénom sont déjà utilisés. Pas d'homonyme dans ma BDD.";
-        //     // Un utilisateur a déjà le même nom et prénom (donc surement déjà un compte)
-        // }
-        $controleName = $this->customerRepository->findByLastname($data['lastname']);
-        if ($controleName) {
-            foreach ($controleName as $firstname) {
-                if ($firstname->getFirstname() === $data["firstname"]) {
-                    break;
-                }
-            }
-            $err[] = 'Nous n\'acceptons pas les homonymes dans cette base de données.';
+        // Vérification de l'existence et de la validité du token
+        if (!isset($data['csrf_token']) || $data['csrf_token'] !== $_SESSION['csrf_token']) {
+            // Erreur 403 : Accès interdit ou tentative de fraude
+            header('HTTP/1.1 403 Forbidden');
+            exit("Erreur de sécurité : Jeton CSRF invalide.");
         }
 
+        if (empty($data['firstname'])) {
+            $err[] = 'Merci de renseigner votre prénom.';
+        }
+        if (empty($data['lastname'])) {
+            $err[] = 'Merci de renseigner votre nom.';
+        }
+        if (empty($data['telNumber'])) {
+            $err[] = 'Merci de renseigner votre numéro de téléphone.';
+        }
+        if (empty($data['mail'])) {
+            $err[] = 'Merci de renseigner votre adresse mail.';
+        }
+        if (empty($data['password'])) {
+            $err[] = 'Merci de renseigner votre mot de passe.';
+        }
 
-        //on supprime tous les caractères qui ne sont pas des chiffres, et on compte le nombre de caractere restant
+        $lastname = htmlspecialchars($data['lastname']);
+        $firstname = htmlspecialchars($data['firstname']);
+
+
+        //on supprime tous les caractères qui ne sont pas des chiffres, 
+        //et on compte le nombre de caractere restant
         $tel_number =  preg_replace('/\D/', '', $data['telNumber']);
-        if (strlen($tel_number) < 10 || strlen($tel_number) >= 12) {
+        if (strlen($tel_number) !== 10) {
             $err[] = 'Le numéro de téléphone est incorrect.';
         }
-        if ($test = $this->accountRepository->findByTelNumber($tel_number)) {
+        var_dump(strlen($tel_number));
+        if ($this->accountRepository->findByTelNumber($tel_number)) {
             $err[] = 'Le numéro de téléphone est déjà utilisé.';
         }
 
 
         //on controle si l'adresse mail existe déjà
         if ($this->accountRepository->findByMail($data['mail'])) {
-            $err[] = 'Cette adresse mail est déjà utilisée.';
+            $err[] = 'Cette adresse email est déjà utilisée.';
+        }
+        $mail = filter_var($data['mail'], FILTER_VALIDATE_EMAIL);
+        if ($mail === false) {
+            $err[] = 'L\'adresse email n\'est pas valide.';
         }
 
+
         if ($data['password'] !== $data['confirmPassword']) {
-            $err[] = 'Les mot de passe ne sont pas identiques.';
+            $err[] = 'Le mot de passe ne correspond pas à la confirmation.';
         }
         $hashedPassword = password_hash($data['password'], PASSWORD_ARGON2ID);
 
@@ -65,16 +83,22 @@ class registerService
         $birthday = new DateTime($data['birthday']);
         $today = new DateTime();
 
+        if (empty($birthday)) {
+            $err[] = 'Merci de renseigner votre date de naissance.';
+        }
+
+
         $interval = $today->diff($birthday);
+        var_dump($interval);
 
         if (!$interval->y >= 18) {
-            $err[] = 'T\'es pas majeur ';
+            $err[] = 'Vous devez être majeur pour vous créer un compte.';
         }
 
         if (empty($err)) {
 
             $account = new account(
-                $data['mail'],
+                $mail,
                 $hashedPassword,
                 $tel_number
             );
@@ -82,11 +106,10 @@ class registerService
             $this->accountRepository->create($account);
 
             $idAccount = $this->accountRepository->findLastId();
-            var_dump($idAccount);
 
             $customer = new customer(
-                $data['lastname'],
-                $data['firstname'],
+                $lastname,
+                $firstname,
                 $birthday,
                 $idAccount
             );

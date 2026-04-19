@@ -25,13 +25,21 @@ class loginService
 
     public function login(array $data)
     {
-        $account = $this->accountRepository->findByMail($data['mail']);
 
-        if (!$account) {
-            throw new \InvalidArgumentException("Identifiant ou Mot de passe");
+
+        // Vérification de l'existence et de la validité du token
+        if (!isset($data['csrf_token']) || $data['csrf_token'] !== $_SESSION['csrf_token']) {
+            // Erreur 403 : Accès interdit ou tentative de fraude
+            header('HTTP/1.1 403 Forbidden');
+            exit("Erreur de sécurité : Jeton CSRF invalide.");
         }
-        if (!password_verify($data['password'], $account->getPassword())) {
-            throw new \InvalidArgumentException("Wrong mdp");
+
+        $mail = filter_var($data['mail'], FILTER_VALIDATE_EMAIL);
+
+        $account = $this->accountRepository->findByMail($mail);
+
+        if (!$account || !password_verify($data['password'], $account->getPassword())) {
+            return false;
         }
         $user = $this->customerRepository->findById($account->getIdAccount());
         $_SESSION['Id_account'] = $account->getIdAccount();

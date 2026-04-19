@@ -1,18 +1,3 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['firstname'])) {
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $telNumber = $_POST['telNumber'];
-    $mail = $_POST['mail'];
-} else {
-    $firstname = '';
-    $lastname = '';
-    $mail = '';
-    $telNumber = '';
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -23,11 +8,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['firstname'])) {
     <link rel="stylesheet" href="/assets/css/footer.css">
     <link rel="stylesheet" href="/assets/css/register.css">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <?php include __DIR__ . '/../views/templates/header.php'  ?>
-    <h3> Créez vous un compte afin de pouvoir prendre rendez-vous ! </h3>
+    <h3> Créez vous un compte pour prendre rendez-vous ! </h3>
     <form action="/register/register" method="post">
         <fieldset>
             <legend>Utilisateur</legend>
@@ -44,10 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['firstname'])) {
         <fieldset>
             <legend>Compte</legend>
             <label>Numéro de téléphone :
-                <input type="tel" name="telNumber" value="<?= $telNumber ?>" placeholder="06.12.34.45.56." required>
+                <input type="tel" name="telNumber" value="<?= $telNumber ?>" required>
             </label>
             <label>Adresse mail :
-                <input type="email" name="mail" value='<?= $mail ?>' placeholder="Jean@Peuplu.com" required>
+                <input type="email" name="mail" value='<?= $mail ?>' required>
             </label>
         </fieldset>
         <fieldset>
@@ -58,11 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['firstname'])) {
             <label>Confirmation :
                 <input type="password" name="confirmPassword" required>
             </label>
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
         </fieldset>
         <input type="submit" value="Valider mon inscription">
     </form>
-    <!-- TODO attention au Value -->
-    <!-- TODO faire un sorte de garder les cases remplies en cas d'echec de création de compte -->
     <?php include __DIR__ . '/../views/templates/footer.html' ?>
 </body>
 

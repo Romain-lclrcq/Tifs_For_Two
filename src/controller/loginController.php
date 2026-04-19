@@ -17,6 +17,7 @@ class loginController
     public function index()
     {
         include __DIR__ . '/../../views/login.php';
+        unset($_SESSION['error']);
     }
 
     public function login(): void
@@ -27,8 +28,8 @@ class loginController
             header('Location: /dashboard');
             exit();
         } else {
-            $_SESSION['error'] = 'pas bon frr';
-            header('Location: /login');
+            $_SESSION['error'] = 'Identifiant ou Mot de passe incorrect';
+            header('Location:/login');
             exit;
         }
     }

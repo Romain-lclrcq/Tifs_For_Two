@@ -25,7 +25,6 @@
         }
         ?>
     </p>
-    <!-- TODO Faire le css de la modal -->
 </dialog>
 
 <style>

@@ -56,22 +56,20 @@ main > div {
 
 aside {
   width: 20%;
-  height: 80vh;
+  height: 70vh;
   position: sticky;
-  top: 10vh;
+  top: 15vh;
   border: #cb45c4 1px solid;
   border-radius: 20px;
   background: white;
 }
 
 aside > h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  margin-top: 5vh;
-}
-aside > p:nth-of-type(1) {
-  margin-top: 5vh;
-  text-align: center;
-  margin-bottom: 5vh;
+  height: 10vh;
 }
 
 .minicut {
@@ -80,11 +78,12 @@ aside > p:nth-of-type(1) {
   background-color: #cb45c4;
 }
 
-span {
+aside span {
   text-align: center;
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 20vh;
 }
 
 span > p {
@@ -114,6 +113,7 @@ span > div {
     flex-direction: column;
     margin: 0;
     gap: 0;
+    text-align: justify;
   }
 
   section img {

@@ -3,6 +3,11 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 session_start();
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+
 use App\entity\{account, appointment, customer, employe, service};
 use App\repository\{accountRepository, appointmentRepository, customerRepository, employeRepository, serviceRepository, opinionRepository};
 use App\service\{DatabaseFactory, registerFactory, registerService, loginService, dashboardService, opinionService, homeService};
